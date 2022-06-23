@@ -24,7 +24,7 @@ if(isset($_GET['op'])){
 if ($op == 'edit'){
     $id         = $_GET['id'];
     $sql1       = "select *  from mahasiswa where id = 'id'";
-    $q1         = mysqli_query($koneksi $sql1);
+    $q1         = mysqli_query($koneksi, $sql1);
     $r1         = mysqli_fetch_array($q1);
     $nim        = $r1['nim'];
     $nama       = $r1['nama'];
