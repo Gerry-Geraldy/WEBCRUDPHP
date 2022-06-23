@@ -15,7 +15,25 @@ $fakultas   = '';
 $sukses     = '';
 $error      = '';
 
-if (isset($_POST['simpan'])) {
+if(isset($_GET['op'])){
+    $op = $_GET['op'];
+}else{
+    $op = "";
+}
+
+if ($op == 'edit'){
+    $id         = $_GET['id'];
+    $sql1       = "select *  from mahasiswa where id = 'id'";
+    $q1         = mysqli_query($koneksi $sql1);
+    $r1         = mysqli_fetch_array($q1);
+    $nim        = $r1['nim'];
+    $nama       = $r1['nama'];
+    $alamat     = $r1['alamat'];
+    $fakultas   = $r1['fakultas'];
+ 
+}
+
+if (isset($_POST['simpan'])) {//untuk create
     $nim        = $_POST['nim'];
     $nama       = $_POST['nama'];
     $alamat     = $_POST['alamat'];
@@ -29,7 +47,7 @@ if (isset($_POST['simpan'])) {
         } else {
             $error      = "Gagal memasukkan data mahasiswa";
         }
-    }else{
+    } else {
         $error = "Silahkan masukkan semua data";
     }
 }
@@ -126,7 +144,48 @@ if (isset($_POST['simpan'])) {
                 Data Mahasiswa
             </div>
             <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">NIM</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Alamat</th>
+                            <th scope="col">Fakultas</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    <tbody>
+                        <?php
+                        $sql2       = "select * from Mahasiswa order by id desc";
+                        $q2         = mysqli_query($koneksi, $sql2);
+                        $urut       = 1;
+                        while ($r2 = mysqli_fetch_array($q2)) {
+                            $id         = $r2['id'];
+                            $nim        = $r2['nim'];
+                            $nama       = $r2['nama'];
+                            $alamat     = $r2['alamat'];
+                            $fakultas   = $r2['fakultas'];
 
+                        ?>
+                            <tr>
+                                <th scope="row"><?php echo $urut++ ?></th>
+                                <td scope="row"><?php echo $nim ?></td>
+                                <td scope="row"><?php echo $nama ?></td>
+                                <td scope="row"><?php echo $alamat ?></td>
+                                <td scope="row"><?php echo $fakultas ?></td>
+                                <td scope="row">
+                                    <a href="index.php?op=edit&id=<?php echo $id ?>"> 
+                                    <button type="button" class="btn btn-dark">Edit</button>
+                                    </a>
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
