@@ -114,7 +114,7 @@ if (isset($_POST['simpan'])) {//untuk create
                         <?php echo $error ?>
                     </div>
                 <?php
-                    header("refresh:5;url=index.php");//5 detik
+                    header("refresh:60;url=index.php");//60 detik
                 }
                 ?>
 
@@ -184,7 +184,7 @@ if (isset($_POST['simpan'])) {//untuk create
                         </tr>
                     <tbody>
                         <?php
-                        $sql2       = "select * from Mahasiswa order by id desc";
+                        $sql2       = "select * from mahasiswa order by id desc";
                         $q2         = mysqli_query($koneksi, $sql2);
                         $urut       = 1;
                         while ($r2 = mysqli_fetch_array($q2)) {
@@ -202,7 +202,7 @@ if (isset($_POST['simpan'])) {//untuk create
                                 <td scope="row"><?php echo $alamat ?></td>
                                 <td scope="row"><?php echo $fakultas ?></td>
                                 <td scope="row">
-                                    <a href="index.php?op=edit&id=<?php echo $id ?>"> <button type="button" class="btn btn-dark">Edit</button></a>
+                                    <a href="index.php?op=edit&id=<?php echo $id ?>"> <button type="button" class="btn btn-warning">Edit</button></a>
                                     <a href="index.php?op=delete&id<?php echo $id ?>" onclick="return confirm('Yakin mau delete data?')"> <button type="button" class="btn btn-danger">Delete</button></a>
                                    
                                 </td>
