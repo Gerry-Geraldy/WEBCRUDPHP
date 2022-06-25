@@ -125,7 +125,7 @@ if (isset($_POST['simpan'])) {//untuk create
                         <?php echo $sukses ?>
                     </div>
                 <?php
-                    header("refresh:5;url=index.php");//5 detik
+                    header("refresh:60;url=index.php");//60 detik
                 }
                 ?>
                 <form action="" method="POST">
