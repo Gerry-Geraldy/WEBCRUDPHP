@@ -1,21 +1,21 @@
 <?php
-$host   = 'localhost';
-$user   = 'root';
-$pass   = '';
-$db     = 'db_akademik';
+$host   = "localhost";
+$user   = "root";
+$pass   = "";
+$db     = "db_akademik";
 
 $koneksi = mysqli_connect($host, $user, $pass, $db);
 if (!$koneksi) { //jika tidak terkoneksi
     die('Tidak bisa terkoneksi ke database');
 }
-$nim        = '';
-$nama       = '';
-$alamat     = '';
-$fakultas   = '';
-$sukses     = '';
-$error      = '';
+$nim        = "";
+$nama       = "";
+$alamat     = "";
+$fakultas   = "";
+$sukses     = "";
+$error      = "";
 
-if(isset($_GET['op'])){
+if (isset($_GET['op'])){
     $op = $_GET['op'];
 }else{
     $op = "";
@@ -23,7 +23,7 @@ if(isset($_GET['op'])){
 
 if ($op == 'delete'){//untuk delete
     $id         = $_GET['id'];
-    $sql1       = "delete FROM mahasiswa WHERE id = '$id'";
+    $sql1       = "delete from mahasiswa where id = '$id'";
     $q1         = mysqli_query($koneksi, $sql1);
     if($q1){
         $sukses = "Data berhasil dihapus";
@@ -32,7 +32,7 @@ if ($op == 'delete'){//untuk delete
     }
 }
 
-if ($op == 'edit'){//untuk update
+if ($op == 'edit'){
     $id         = $_GET['id'];
     $sql1       = "select * from mahasiswa where id = '$id'";
     $q1         = mysqli_query($koneksi, $sql1);
